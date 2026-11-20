@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hair room ねいろ｜サンプルサイト</title>
+<meta name="description" content="ぬくもWebが制作した美容院のサンプルサイトです（架空の店舗）。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== 色の設定：くすみピンク × グレージュ ===== */
+  :root {
+    --pink: #c98f8f;       /* メインのくすみピンク */
+    --pink-dark: #a86f70;
+    --pink-soft: #f6e7e4;
+    --greige: #b8aca0;     /* グレージュ */
+    --bg: #fbf8f5;
+    --white: #ffffff;
+    --text: #4b4342;
+    --sub: #8d8280;
+    --line: #ece3de;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.9; letter-spacing: .03em;
+  }
+  .en { font-family: "Cormorant Garamond", serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+  .sample-bar { background: var(--text); color: #eee3df; text-align: center; font-size: .82rem; padding: 6px 12px; }
+  .sample-bar a { color: #f3c4c0; }
+
+  /* ===== ヘッダー ===== */
+  header { background: rgba(251, 248, 245, .95); position: sticky; top: 0; z-index: 10; border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; height: 68px; }
+  .logo { text-decoration: none; color: var(--text); font-size: 1.5rem; letter-spacing: .08em; }
+  .logo b { color: var(--pink); font-weight: 600; }
+  nav a { margin-left: 20px; color: var(--sub); text-decoration: none; font-size: .9rem; }
+  nav a:hover { color: var(--pink); }
+  .nav-btn { background: var(--pink); color: #fff !important; padding: 6px 18px; border-radius: 999px; }
+
+  /* ===== メインビジュアル ===== */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+  .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 60px 8%; }
+  .hero-text .en { color: var(--pink); font-size: 1.1rem; letter-spacing: .2em; }
+  .hero-text h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 500; line-height: 1.6; margin: 10px 0 18px; }
+  .hero-text p { color: var(--sub); }
+  .hero-visual {
+    position: relative; overflow: hidden;
+    background: linear-gradient(150deg, #f3d9d4 0%, #e1c3bd 45%, #c9b3a6 100%);
+  }
+  .hero-visual .circle { position: absolute; border-radius: 50%; background: rgba(255,255,255,.35); }
+  .hero-visual .c1 { width: 320px; height: 320px; top: 12%; left: 18%; }
+  .hero-visual .c2 { width: 160px; height: 160px; bottom: 10%; right: 12%; background: rgba(255,255,255,.25); }
+  .hero-visual .scissors { position: absolute; inset: 0; display: grid; place-items: center; font-size: 4rem; }
+  .btn {
+    display: inline-block; margin-top: 28px; padding: 13px 34px; border-radius: 999px;
+    background: var(--pink); color: #fff; text-decoration: none; font-weight: 500; width: fit-content;
+    transition: background .2s, transform .2s;
+  }
+  .btn:hover { background: var(--pink-dark); transform: translateY(-2px); }
+
+  /* ===== セクション共通 ===== */
+  section { padding: 90px 0; }
+  .title { text-align: center; margin-bottom: 46px; }
+  .title .en { display: block; color: var(--pink); font-size: 2rem; letter-spacing: .12em; line-height: 1.2; }
+  .title h2 { font-size: .95rem; font-weight: 500; color: var(--sub); }
+  .soft { background: var(--pink-soft); }
+
+  /* ===== コンセプト ===== */
+  .concept { max-width: 640px; margin: 0 auto; text-align: center; }
+  .concept p + p { margin-top: 14px; }
+  .features { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: 48px; }
+  .feature { background: var(--white); border-radius: 20px; padding: 26px 20px; text-align: center; }
+  .feature .num { color: var(--pink); font-size: 1.8rem; }
+  .feature h3 { font-size: 1rem; font-weight: 700; margin: 4px 0 6px; }
+  .feature p { color: var(--sub); font-size: .88rem; }
+
+  /* ===== メニュー ===== */
+  .price-box { max-width: 680px; margin: 0 auto; background: var(--white); border-radius: 24px; padding: 36px 40px; }
+  .price-box h3 { color: var(--pink); font-size: 1rem; letter-spacing: .1em; margin: 22px 0 8px; }
+  .price-box h3:first-child { margin-top: 0; }
+  .row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .row small { display: block; color: var(--sub); font-size: .8rem; }
+  .row .yen { white-space: nowrap; font-weight: 500; }
+  .note { text-align: center; color: var(--sub); font-size: .82rem; margin-top: 20px; }
+
+  /* ===== スタッフ ===== */
+  .staff { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .person { background: var(--white); border-radius: 22px; padding: 30px 24px; text-align: center; }
+  .face {
+    width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 14px;
+    display: grid; place-items: center; color: #fff; font-size: 2.2rem;
+  }
+  .person .role { color: var(--pink); font-size: .8rem; letter-spacing: .1em; }
+  .person h3 { font-size: 1.1rem; font-weight: 700; }
+  .person p { color: var(--sub); font-size: .88rem; margin-top: 8px; }
+
+  /* ===== 予約の流れ ===== */
+  .flow { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .flow div { background: var(--white); border-radius: 18px; padding: 22px; text-align: center; }
+  .flow .step { color: var(--pink); font-size: 1.3rem; }
+  .flow p { font-size: .9rem; color: var(--sub); }
+  .reserve { text-align: center; margin-top: 40px; }
+  .reserve .tel { display: block; margin-top: 12px; color: var(--sub); font-size: .9rem; }
+
+  /* ===== よくある質問 ===== */
+  .faq { max-width: 680px; margin: 0 auto; }
+  details { background: var(--white); border-radius: 16px; padding: 18px 22px; margin-bottom: 12px; }
+  summary { cursor: pointer; font-weight: 500; list-style: none; position: relative; padding-right: 24px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "Q. "; color: var(--pink); font-weight: 700; }
+  summary::after { content: "+"; position: absolute; right: 0; color: var(--pink); font-size: 1.2rem; line-height: 1.6; }
+  details[open] summary::after { content: "−"; }
+  details p { color: var(--sub); font-size: .92rem; margin-top: 10px; }
+
+  /* ===== アクセス ===== */
+  .info { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .info dl { background: var(--white); border-radius: 22px; padding: 26px 30px; }
+  .info dt { color: var(--pink); font-size: .85rem; margin-top: 12px; }
+  .info dt:first-child { margin-top: 0; }
+  .map { min-height: 260px; border-radius: 22px; background: #eadbd5; display: grid; place-items: center; color: var(--sub); text-align: center; padding: 20px; }
+
+  footer { text-align: center; padding: 34px 20px; color: var(--sub); font-size: .82rem; border-top: 1px solid var(--line); }
+  footer .en { font-size: 1.4rem; color: var(--text); }
+
+  @media (max-width: 760px) {
+    nav a:not(.nav-btn) { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { min-height: 240px; order: -1; }
+    section { padding: 66px 0; }
+    .price-box { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-bar">
+  これは <a href="../../index.html">ぬくもWeb</a> が制作したサンプルサイトです（架空の店舗です）
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo en" href="#">hair room <b>ねいろ</b></a>
+    <nav>
+      <a href="#concept">コンセプト</a>
+      <a href="#menu">メニュー</a>
+      <a href="#staff">スタッフ</a>
+      <a href="#faq">よくある質問</a>
+      <a class="nav-btn" href="#reserve">ご予約</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-text">
+    <span class="en">Private Hair Salon</span>
+    <h1>あなたらしい「ねいろ」を、<br>髪から見つけよう。</h1>
+    <p>スタッフ2名の小さなサロン。<br>カウンセリングからお仕上げまで、同じスタイリストが担当します。</p>
+    <a class="btn" href="#reserve">予約する</a>
+  </div>
+  <div class="hero-visual">
+    <div class="circle c1"></div>
+    <div class="circle c2"></div>
+    <div class="scissors">✂️</div>
+  </div>
+</div>
+
+<!-- コンセプト -->
+<section id="concept">
+  <div class="wrap">
+    <div class="title"><span class="en">Concept</span><h2>コンセプト</h2></div>
+    <div class="concept">
+      <p>人それぞれ声の音色がちがうように、似合う髪型もひとりひとりちがいます。</p>
+      <p>「ねいろ」では、じっくりお話を聞くことを大切に、<br>毎日の暮らしになじむ、あなただけのスタイルをご提案します。</p>
+    </div>
+    <div class="features">
+      <div class="feature"><div class="num en">01</div><h3>完全予約制</h3><p>待ち時間なく、落ち着いた空間でお過ごしいただけます。</p></div>
+      <div class="feature"><div class="num en">02</div><h3>丁寧なカウンセリング</h3><p>髪の悩みやなりたいイメージを、時間をかけてうかがいます。</p></div>
+      <div class="feature"><div class="num en">03</div><h3>髪にやさしい薬剤</h3><p>ダメージをおさえたカラー・パーマ剤を使用しています。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- メニュー -->
+<section id="menu" class="soft">
+  <div class="wrap">
+    <div class="title"><span class="en">Menu</span><h2>メニュー・料金</h2></div>
+    <div class="price-box">
+      <h3>CUT</h3>
+      <div class="row"><span>カット<small>シャンプー・ブロー込み</small></span><span class="yen">¥4,400</span></div>
+      <div class="row"><span>前髪カット</span><span class="yen">¥1,100</span></div>
+      <div class="row"><span>学生カット<small>中学生・高校生</small></span><span class="yen">¥3,300</span></div>
+      <h3>COLOR</h3>
+      <div class="row"><span>カット＋カラー</span><span class="yen">¥9,900〜</span></div>
+      <div class="row"><span>リタッチカラー<small>根元のみ</small></span><span class="yen">¥5,500〜</span></div>
+      <h3>PERM / TREATMENT</h3>
+      <div class="row"><span>カット＋パーマ</span><span class="yen">¥11,000〜</span></div>
+      <div class="row"><span>集中トリートメント</span><span class="yen">¥3,300</span></div>
+      <div class="row"><span>ヘッドスパ<small>20分</small></span><span class="yen">¥2,750</span></div>
+    </div>
+    <p class="note">※価格はすべて税込です。※髪の長さや量により料金が変わる場合があります。※メニュー・価格はサンプルです。</p>
+  </div>
+</section>
+
+<!-- スタッフ -->
+<section id="staff">
+  <div class="wrap">
+    <div class="title"><span class="en">Staff</span><h2>スタッフ紹介</h2></div>
+    <div class="staff">
+      <div class="person">
+        <div class="face" style="background:linear-gradient(135deg,#e2b4ae,#c98f8f)">🌷</div>
+        <div class="role en">OWNER STYLIST</div>
+        <h3>みどり</h3>
+        <p>美容師歴15年。ショートヘアと、扱いやすいスタイルづくりが得意です。</p>
+      </div>
+      <div class="person">
+        <div class="face" style="background:linear-gradient(135deg,#cfc3b6,#a89a8c)">🌿</div>
+        <div class="role en">STYLIST</div>
+        <h3>はるか</h3>
+        <p>美容師歴7年。透明感のあるカラーと、ヘッドスパでの癒やしにこだわっています。</p>
+      </div>
+    </div>
+    <p class="note">※スタッフは架空の人物です。</p>
+  </div>
+</section>
+
+<!-- 予約 -->
+<section id="reserve" class="soft">
+  <div class="wrap">
+    <div class="title"><span class="en">Reservation</span><h2>ご予約の流れ</h2></div>
+    <div class="flow">
+      <div><div class="step en">Step 1</div><p>ネット予約またはお電話で、ご希望の日時とメニューを選びます。</p></div>
+      <div><div class="step en">Step 2</div><p>ご来店後、髪のお悩みやなりたいイメージをお聞きします。</p></div>
+      <div><div class="step en">Step 3</div><p>施術後、おうちでのお手入れ方法もお伝えします。</p></div>
+    </div>
+    <div class="reserve">
+      <a class="btn" href="#reserve">ネットで予約する（サンプル）</a>
+      <span class="tel">お電話でのご予約：000-0000-0000</span>
+    </div>
+  </div>
+</section>
+
+<!-- よくある質問 -->
+<section id="faq">
+  <div class="wrap">
+    <div class="title"><span class="en">Q&amp;A</span><h2>よくある質問</h2></div>
+    <div class="faq">
+      <details><summary>当日の予約はできますか？</summary><p>空きがあれば可能です。お電話でお気軽にお問い合わせください。</p></details>
+      <details><summary>子ども連れでも大丈夫ですか？</summary><p>はい、大丈夫です。キッズスペースはありませんが、絵本をご用意しています。</p></details>
+      <details><summary>支払い方法は何がありますか？</summary><p>現金のほか、クレジットカード・電子マネー・QRコード決済がご利用いただけます。</p></details>
+      <details><summary>駐車場はありますか？</summary><p>店舗前に2台分ございます。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- アクセス -->
+<section id="access" class="soft">
+  <div class="wrap">
+    <div class="title"><span class="en">Access</span><h2>店舗情報</h2></div>
+    <div class="info">
+      <dl>
+        <dt>住所</dt><dd>〇〇県〇〇市〇〇町4-5-6</dd>
+        <dt>電話</dt><dd>000-0000-0000</dd>
+        <dt>営業時間</dt><dd>10:00〜19:00（最終受付 カット 18:00／カラー・パーマ 17:00）</dd>
+        <dt>定休日</dt><dd>毎週月曜日・第3火曜日</dd>
+        <dt>駐車場</dt><dd>2台</dd>
+      </dl>
+      <div class="map">🗺️<br>ここに地図が入ります<br><small>（本番ではGoogleマップを埋め込みます）</small></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="en">hair room ねいろ</div>
+  <div>© 2026 hair room ねいろ（サンプル）｜制作：ぬくもWeb</div>
+</footer>
+
+</body>
+</html>

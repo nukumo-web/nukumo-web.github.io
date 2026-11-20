@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ひなた個別学習塾｜サンプルサイト</title>
+<meta name="description" content="ぬくもWebが制作した学習塾のサンプルサイトです（架空の塾）。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== 色の設定：信頼のネイビー × あたたかいひなた色 ===== */
+  :root {
+    --navy: #234a7a;
+    --navy-dark: #18365b;
+    --sun: #f6b93b;        /* ひなた色 */
+    --sun-soft: #fff4dc;
+    --sky: #e9f1fa;
+    --bg: #fdfcf9;
+    --white: #ffffff;
+    --text: #2f3640;
+    --sub: #6b7480;
+    --line: #e3e8ee;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "M PLUS Rounded 1c", sans-serif; background: var(--bg); color: var(--text); line-height: 1.85; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+  .sample-bar { background: var(--navy-dark); color: #dce6f2; text-align: center; font-size: .82rem; padding: 6px 12px; }
+  .sample-bar a { color: var(--sun); }
+
+  /* ===== ヘッダー ===== */
+  header { background: var(--white); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); font-weight: 800; font-size: 1.2rem; }
+  .logo .mark { width: 38px; height: 38px; border-radius: 50%; background: var(--sun); display: grid; place-items: center; font-size: 1.2rem; }
+  nav { display: flex; align-items: center; }
+  nav a { margin-left: 20px; color: var(--sub); text-decoration: none; font-size: .92rem; font-weight: 500; }
+  nav a:hover { color: var(--navy); }
+  .nav-cta { background: var(--sun); color: var(--navy-dark) !important; padding: 8px 18px; border-radius: 999px; font-weight: 700 !important; }
+
+  /* ===== メインビジュアル ===== */
+  .hero { background: linear-gradient(180deg, var(--sky) 0%, var(--bg) 100%); padding: 80px 0 70px; overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; align-items: center; }
+  .badge { display: inline-block; background: var(--white); color: var(--navy); border: 2px solid var(--navy); border-radius: 999px; padding: 2px 14px; font-size: .85rem; font-weight: 700; }
+  .hero h1 { color: var(--navy-dark); font-size: clamp(1.8rem, 4.6vw, 2.6rem); font-weight: 800; line-height: 1.5; margin: 16px 0; }
+  .hero h1 mark { background: linear-gradient(transparent 60%, var(--sun) 60%); color: inherit; }
+  .hero p { color: var(--sub); }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .btn { display: inline-block; padding: 13px 28px; border-radius: 999px; text-decoration: none; font-weight: 700; transition: transform .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-main { background: var(--sun); color: var(--navy-dark); box-shadow: 0 4px 0 #d99a1f; }
+  .btn-sub { background: var(--white); color: var(--navy); border: 2px solid var(--navy); }
+  .hero-art { position: relative; height: 300px; }
+  .sun { position: absolute; width: 220px; height: 220px; border-radius: 50%; background: var(--sun); top: 20px; right: 30px; box-shadow: 0 0 0 26px rgba(246,185,59,.2), 0 0 0 56px rgba(246,185,59,.1); }
+  .book { position: absolute; font-size: 5rem; bottom: 10px; left: 20%; }
+  .pencil { position: absolute; font-size: 3rem; top: 30px; left: 10%; transform: rotate(-15deg); }
+
+  /* ===== セクション共通 ===== */
+  section { padding: 84px 0; }
+  .title { text-align: center; margin-bottom: 44px; }
+  .title .sub { color: var(--sun); font-weight: 800; letter-spacing: .2em; font-size: .8rem; }
+  .title h2 { color: var(--navy-dark); font-size: 1.7rem; font-weight: 800; }
+  .bg-sky { background: var(--sky); }
+  .bg-sun { background: var(--sun-soft); }
+
+  /* ===== 選ばれる理由 ===== */
+  .reasons { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+  .reason { background: var(--white); border-radius: 22px; padding: 30px 26px; border-top: 6px solid var(--sun); box-shadow: 0 4px 16px rgba(35,74,122,.06); }
+  .reason .no { color: var(--sun); font-weight: 800; font-size: 1.6rem; line-height: 1; }
+  .reason h3 { color: var(--navy); font-size: 1.15rem; margin: 10px 0 6px; }
+  .reason p { color: var(--sub); font-size: .93rem; }
+
+  /* ===== コース ===== */
+  .courses { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+  .course { background: var(--white); border-radius: 22px; overflow: hidden; border: 1px solid var(--line); }
+  .course-head { padding: 18px 24px; color: #fff; font-weight: 800; font-size: 1.15rem; }
+  .course-body { padding: 22px 24px; }
+  .course-body ul { list-style: none; color: var(--sub); font-size: .92rem; }
+  .course-body li::before { content: "✔ "; color: var(--sun); font-weight: 800; }
+  .fee { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); }
+  .fee b { color: var(--navy); font-size: 1.5rem; }
+  .fee small { color: var(--sub); }
+  .note { text-align: center; color: var(--sub); font-size: .82rem; margin-top: 22px; }
+
+  /* ===== 保護者の方へ ===== */
+  .parent { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .parent div { background: var(--white); border-radius: 18px; padding: 24px; text-align: center; }
+  .parent .icon { font-size: 2.2rem; }
+  .parent h3 { color: var(--navy); font-size: 1rem; margin: 6px 0; }
+  .parent p { color: var(--sub); font-size: .88rem; }
+
+  /* ===== 無料体験の流れ ===== */
+  .flow { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); counter-reset: f; }
+  .flow div { background: var(--white); border-radius: 18px; padding: 24px 20px; position: relative; text-align: center; }
+  .flow div::before { counter-increment: f; content: counter(f); display: grid; place-items: center; width: 40px; height: 40px; margin: 0 auto 10px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 800; }
+  .flow h3 { color: var(--navy); font-size: 1rem; }
+  .flow p { color: var(--sub); font-size: .88rem; }
+
+  /* ===== お問い合わせフォーム ===== */
+  .form { max-width: 620px; margin: 0 auto; background: var(--white); border-radius: 24px; padding: 34px; box-shadow: 0 4px 16px rgba(35,74,122,.06); }
+  .form label { display: block; font-weight: 700; color: var(--navy); font-size: .92rem; margin: 16px 0 6px; }
+  .form label:first-child { margin-top: 0; }
+  .form .req { background: #e86a5a; color: #fff; font-size: .7rem; padding: 1px 8px; border-radius: 4px; margin-left: 6px; }
+  .form input, .form select, .form textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; font: inherit; background: var(--bg); }
+  .form textarea { min-height: 110px; resize: vertical; }
+  .form button { margin-top: 24px; width: 100%; border: 0; cursor: pointer; font: inherit; font-size: 1rem; }
+  .form .msg { display: none; margin-top: 14px; text-align: center; color: var(--navy); font-weight: 700; }
+
+  /* ===== よくある質問 ===== */
+  .faq { max-width: 680px; margin: 0 auto; }
+  details { background: var(--white); border-radius: 14px; padding: 16px 20px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 700; color: var(--navy); }
+  details p { color: var(--sub); font-size: .92rem; margin-top: 8px; }
+
+  /* ===== アクセス ===== */
+  .info { display: grid; gap: 26px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .info table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 18px; overflow: hidden; }
+  .info th, .info td { text-align: left; padding: 13px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .info th { color: var(--navy); white-space: nowrap; width: 30%; }
+  .map { min-height: 250px; border-radius: 18px; background: #dbe6f2; display: grid; place-items: center; color: var(--sub); text-align: center; padding: 20px; }
+
+  footer { background: var(--navy-dark); color: #c9d6e6; text-align: center; padding: 32px 20px; font-size: .84rem; }
+  footer b { color: #fff; font-size: 1.05rem; }
+
+  @media (max-width: 760px) {
+    nav a:not(.nav-cta) { display: none; }
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-art { height: 200px; }
+    .sun { width: 150px; height: 150px; right: 20%; }
+    .book { font-size: 4rem; }
+    section { padding: 64px 0; }
+    .form { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-bar">
+  これは <a href="../../index.html">ぬくもWeb</a> が制作したサンプルサイトです（架空の塾です）
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#"><span class="mark">☀️</span>ひなた個別学習塾</a>
+    <nav>
+      <a href="#reason">選ばれる理由</a>
+      <a href="#course">コース・料金</a>
+      <a href="#parent">保護者の方へ</a>
+      <a href="#faq">よくある質問</a>
+      <a class="nav-cta" href="#trial">無料体験</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <span class="badge">小学生・中学生・高校生</span>
+      <h1>「わからない」を<br><mark>「わかった！」</mark>に<br>変える個別指導。</h1>
+      <p>先生1人に生徒2人まで。<br>ひとりひとりのペースに合わせて、勉強の楽しさから一緒に育てます。</p>
+      <div class="btns">
+        <a class="btn btn-main" href="#trial">無料体験に申し込む</a>
+        <a class="btn btn-sub" href="#course">コースを見る</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="sun"></div>
+      <div class="pencil">✏️</div>
+      <div class="book">📚</div>
+    </div>
+  </div>
+</div>
+
+<!-- 選ばれる理由 -->
+<section id="reason">
+  <div class="wrap">
+    <div class="title"><div class="sub">REASON</div><h2>ひなた塾が選ばれる3つの理由</h2></div>
+    <div class="reasons">
+      <div class="reason"><div class="no">01</div><h3>先生1人に生徒2人まで</h3><p>質問しやすい距離で、つまずいたところをその場で解決します。</p></div>
+      <div class="reason"><div class="no">02</div><h3>その子だけの学習プラン</h3><p>学校の進み具合やテスト日程に合わせて、毎月プランを見直します。</p></div>
+      <div class="reason"><div class="no">03</div><h3>自習室が使い放題</h3><p>授業がない日も、静かな自習室で集中して勉強できます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- コース -->
+<section id="course" class="bg-sky">
+  <div class="wrap">
+    <div class="title"><div class="sub">COURSE</div><h2>コース・料金</h2></div>
+    <div class="courses">
+      <div class="course">
+        <div class="course-head" style="background:#5fb37a">小学生コース</div>
+        <div class="course-body">
+          <ul><li>算数・国語の基礎固め</li><li>宿題のサポート</li><li>中学受験の相談もOK</li></ul>
+          <div class="fee"><small>週1回（60分）</small><br><b>¥8,800</b><small> / 月</small></div>
+        </div>
+      </div>
+      <div class="course">
+        <div class="course-head" style="background:var(--navy)">中学生コース</div>
+        <div class="course-body">
+          <ul><li>定期テスト対策</li><li>高校受験対策</li><li>5教科から選べる</li></ul>
+          <div class="fee"><small>週1回（80分）</small><br><b>¥13,200</b><small> / 月</small></div>
+        </div>
+      </div>
+      <div class="course">
+        <div class="course-head" style="background:#8a63b8">高校生コース</div>
+        <div class="course-body">
+          <ul><li>学校の授業の復習</li><li>大学受験・推薦対策</li><li>苦手科目の克服</li></ul>
+          <div class="fee"><small>週1回（80分）</small><br><b>¥16,500</b><small> / 月</small></div>
+        </div>
+      </div>
+    </div>
+    <p class="note">※価格はすべて税込です。※入塾金・教材費は別途かかります。※料金はサンプルです。</p>
+  </div>
+</section>
+
+<!-- 保護者の方へ -->
+<section id="parent">
+  <div class="wrap">
+    <div class="title"><div class="sub">FOR PARENTS</div><h2>保護者の方へ</h2></div>
+    <div class="parent">
+      <div><div class="icon">📱</div><h3>授業ごとに報告</h3><p>その日の学習内容や様子を、アプリでお知らせします。</p></div>
+      <div><div class="icon">🗣️</div><h3>定期的な面談</h3><p>3か月に1回、学習の進み具合や進路について面談します。</p></div>
+      <div><div class="icon">🔔</div><h3>入退室のお知らせ</h3><p>塾に着いたとき・帰るときに通知が届くので安心です。</p></div>
+      <div><div class="icon">📅</div><h3>振替授業OK</h3><p>部活や体調不良で休んでも、別の日に振り替えられます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 無料体験 -->
+<section id="trial" class="bg-sun">
+  <div class="wrap">
+    <div class="title"><div class="sub">FREE TRIAL</div><h2>無料体験の流れ</h2></div>
+    <div class="flow">
+      <div><h3>お申し込み</h3><p>下のフォームまたはお電話でお申し込みください。</p></div>
+      <div><h3>学習相談</h3><p>今の成績や悩み、目標をお聞きします。</p></div>
+      <div><h3>体験授業</h3><p>実際の授業を2回まで無料で体験できます。</p></div>
+      <div><h3>ご入塾</h3><p>納得していただけたらご入塾。無理な勧誘はしません。</p></div>
+    </div>
+
+    <form class="form" style="margin-top:44px" onsubmit="event.preventDefault(); this.querySelector('.msg').style.display='block';">
+      <label>保護者のお名前<span class="req">必須</span></label>
+      <input type="text" placeholder="例）ひなた 花子" required>
+      <label>お子さまの学年<span class="req">必須</span></label>
+      <select required>
+        <option value="">選んでください</option>
+        <option>小学1〜3年生</option><option>小学4〜6年生</option>
+        <option>中学生</option><option>高校生</option>
+      </select>
+      <label>メールアドレス<span class="req">必須</span></label>
+      <input type="email" placeholder="例）sample@example.com" required>
+      <label>ご質問・ご要望</label>
+      <textarea placeholder="苦手な教科や、気になることがあればご記入ください"></textarea>
+      <button class="btn btn-main" type="submit">無料体験を申し込む（サンプル）</button>
+      <p class="msg">これはサンプルなので、送信はされません 🙇</p>
+    </form>
+  </div>
+</section>
+
+<!-- よくある質問 -->
+<section id="faq">
+  <div class="wrap">
+    <div class="title"><div class="sub">Q&amp;A</div><h2>よくある質問</h2></div>
+    <div class="faq">
+      <details><summary>Q. 勉強が苦手でもついていけますか？</summary><p>はい。個別指導なので、お子さまのわかるところから始めます。</p></details>
+      <details><summary>Q. 部活が忙しくても通えますか？</summary><p>曜日や時間は相談して決められます。振替授業もあるので安心です。</p></details>
+      <details><summary>Q. 兄弟で通うと割引はありますか？</summary><p>2人目以降は月謝を10%割引しています。</p></details>
+      <details><summary>Q. 体験授業のあと、必ず入塾しないといけませんか？</summary><p>いいえ。体験だけでも大歓迎です。無理な勧誘はいたしません。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- アクセス -->
+<section id="access" class="bg-sky">
+  <div class="wrap">
+    <div class="title"><div class="sub">ACCESS</div><h2>教室案内</h2></div>
+    <div class="info">
+      <table>
+        <tr><th>教室名</th><td>ひなた個別学習塾</td></tr>
+        <tr><th>住所</th><td>〇〇県〇〇市〇〇町7-8-9 2階</td></tr>
+        <tr><th>電話</th><td>000-0000-0000</td></tr>
+        <tr><th>受付時間</th><td>平日 14:00〜21:30<br>土曜 10:00〜18:00</td></tr>
+        <tr><th>休校日</th><td>日曜・祝日</td></tr>
+        <tr><th>アクセス</th><td>〇〇駅から徒歩5分<br>駐輪場あり</td></tr>
+      </table>
+      <div class="map">🗺️<br>ここに地図が入ります<br><small>（本番ではGoogleマップを埋め込みます）</small></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>☀️ ひなた個別学習塾</b><br>
+  © 2026 ひなた個別学習塾（サンプル）｜制作：ぬくもWeb
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>まちかど珈琲 ことり｜サンプルサイト</title>
+<meta name="description" content="ぬくもWebが制作したカフェのサンプルサイトです（架空の店舗）。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== 色の設定 ===== */
+  :root {
+    --brown: #6f4e37;      /* コーヒー色 */
+    --brown-dark: #4b3426;
+    --cream: #faf3e8;      /* ミルク色 */
+    --latte: #ead7c0;      /* カフェラテ色 */
+    --green: #7d9a7a;      /* 観葉植物の緑 */
+    --text: #3e2f25;
+    --sub: #85715f;
+    --white: #fffcf7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Zen Maru Gothic", sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.9;
+  }
+  .mincho { font-family: "Zen Old Mincho", serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+  /* ===== サンプル表示の帯 ===== */
+  .sample-bar {
+    background: var(--brown-dark); color: #f3e6d6;
+    text-align: center; font-size: .82rem; padding: 6px 12px;
+  }
+  .sample-bar a { color: #ffd8b0; }
+
+  /* ===== ヘッダー ===== */
+  header { background: var(--white); border-bottom: 1px solid var(--latte); }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+  .shop-name { font-size: 1.25rem; font-weight: 700; color: var(--brown); text-decoration: none; }
+  .shop-name small { display: block; font-size: .7rem; color: var(--sub); font-weight: 400; letter-spacing: .15em; line-height: 1; }
+  nav a { margin-left: 20px; color: var(--sub); text-decoration: none; font-size: .95rem; }
+  nav a:hover { color: var(--brown); }
+
+  /* ===== メインビジュアル ===== */
+  .hero {
+    position: relative; overflow: hidden;
+    background: linear-gradient(160deg, #8b6248 0%, #5a3e2c 100%);
+    color: var(--white); text-align: center; padding: 110px 20px 120px;
+  }
+  .hero::before, .hero::after { /* 湯気のような丸い光 */
+    content: ""; position: absolute; border-radius: 50%;
+    background: rgba(255, 240, 220, .08);
+  }
+  .hero::before { width: 420px; height: 420px; top: -120px; left: -100px; }
+  .hero::after  { width: 300px; height: 300px; bottom: -110px; right: -60px; }
+  .hero .cup { font-size: 3.2rem; margin-bottom: 12px; }
+  .hero h1 { font-size: clamp(1.8rem, 5vw, 2.7rem); line-height: 1.5; margin-bottom: 18px; }
+  .hero p { opacity: .9; }
+  .hero .btn { margin-top: 34px; }
+  .btn {
+    display: inline-block; padding: 13px 34px; border-radius: 999px;
+    background: var(--latte); color: var(--brown-dark); font-weight: 700; text-decoration: none;
+    transition: transform .2s, background .2s;
+  }
+  .btn:hover { transform: translateY(-2px); background: #f3e3cf; }
+
+  /* ===== セクション共通 ===== */
+  section { padding: 84px 0; }
+  .title { text-align: center; margin-bottom: 44px; }
+  .title .en { display: block; color: var(--green); letter-spacing: .3em; font-size: .8rem; }
+  .title h2 { font-size: 1.8rem; color: var(--brown); }
+
+  /* ===== こだわり ===== */
+  .concept { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .point { background: var(--white); border-radius: 22px; padding: 30px 26px; text-align: center; }
+  .point .icon {
+    width: 72px; height: 72px; margin: 0 auto 14px; border-radius: 50%;
+    background: var(--latte); display: grid; place-items: center; font-size: 2rem;
+  }
+  .point h3 { color: var(--brown); margin-bottom: 6px; }
+  .point p { color: var(--sub); font-size: .93rem; }
+
+  /* ===== メニュー ===== */
+  .menu-bg { background: var(--white); }
+  .menu { display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .menu h3 {
+    color: var(--brown); font-size: 1.15rem; border-bottom: 2px solid var(--latte);
+    padding-bottom: 6px; margin-bottom: 14px;
+  }
+  .item { display: flex; align-items: baseline; gap: 8px; padding: 6px 0; }
+  .item .name { flex-shrink: 0; }
+  .item .dots { flex: 1; border-bottom: 1px dotted #cdb79f; transform: translateY(-4px); }
+  .item .price { flex-shrink: 0; font-weight: 700; color: var(--brown); }
+  .item-note { font-size: .82rem; color: var(--sub); margin: -4px 0 6px; }
+  .menu-note { text-align: center; color: var(--sub); font-size: .85rem; margin-top: 30px; }
+
+  /* ===== 店内の様子（写真の代わりのイラスト枠） ===== */
+  .gallery { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .photo {
+    aspect-ratio: 4 / 3; border-radius: 18px; display: grid; place-items: center;
+    color: var(--white); font-size: 2.6rem; position: relative;
+  }
+  .photo span {
+    position: absolute; bottom: 10px; left: 14px; font-size: .85rem;
+    background: rgba(0,0,0,.25); padding: 0 10px; border-radius: 999px;
+  }
+
+  /* ===== 店舗情報 ===== */
+  .info { display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: start; }
+  .info table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 18px; overflow: hidden; }
+  .info th, .info td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--cream); vertical-align: top; }
+  .info th { width: 34%; color: var(--brown); white-space: nowrap; }
+  .map {
+    min-height: 260px; border-radius: 18px; background: var(--latte);
+    display: grid; place-items: center; color: var(--sub); text-align: center; padding: 20px;
+  }
+
+  footer { background: var(--brown-dark); color: #e9d9c6; text-align: center; padding: 34px 20px; font-size: .85rem; }
+  footer .shop { font-size: 1.1rem; margin-bottom: 4px; }
+
+  @media (max-width: 640px) {
+    nav { display: none; }
+    section { padding: 64px 0; }
+    .hero { padding: 80px 20px 90px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-bar">
+  これは <a href="../../index.html">ぬくもWeb</a> が制作したサンプルサイトです（架空の店舗です）
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="shop-name mincho" href="#"><small>MACHIKADO COFFEE</small>まちかど珈琲 ことり</a>
+    <nav>
+      <a href="#concept">こだわり</a>
+      <a href="#menu">メニュー</a>
+      <a href="#gallery">店内</a>
+      <a href="#access">アクセス</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="cup">☕</div>
+  <h1 class="mincho">ただいま、と言いたくなる<br>まちかどの小さな喫茶店。</h1>
+  <p>一杯ずつ丁寧にいれる珈琲と、手づくりのおやつで<br>ほっとひと息つける時間をお届けします。</p>
+  <a class="btn" href="#menu">メニューを見る</a>
+</div>
+
+<!-- こだわり -->
+<section id="concept">
+  <div class="wrap">
+    <div class="title"><span class="en">CONCEPT</span><h2 class="mincho">ことりのこだわり</h2></div>
+    <div class="concept">
+      <div class="point">
+        <div class="icon">🫘</div>
+        <h3>自家焙煎の珈琲</h3>
+        <p>毎朝お店で焙煎した豆を使い、一杯ずつハンドドリップでおいれします。</p>
+      </div>
+      <div class="point">
+        <div class="icon">🍰</div>
+        <h3>手づくりのおやつ</h3>
+        <p>季節の果物を使ったケーキや焼き菓子を、毎日お店で焼いています。</p>
+      </div>
+      <div class="point">
+        <div class="icon">🪴</div>
+        <h3>ゆっくりできる空間</h3>
+        <p>木のぬくもりと緑に囲まれた店内で、時間を気にせずお過ごしください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- メニュー -->
+<section id="menu" class="menu-bg">
+  <div class="wrap">
+    <div class="title"><span class="en">MENU</span><h2 class="mincho">メニュー</h2></div>
+    <div class="menu">
+      <div>
+        <h3>珈琲・ドリンク</h3>
+        <div class="item"><span class="name">ことりブレンド</span><span class="dots"></span><span class="price">¥500</span></div>
+        <p class="item-note">苦みと甘みのバランスがよい、当店の定番</p>
+        <div class="item"><span class="name">カフェラテ</span><span class="dots"></span><span class="price">¥550</span></div>
+        <div class="item"><span class="name">本日のシングルオリジン</span><span class="dots"></span><span class="price">¥600</span></div>
+        <div class="item"><span class="name">ほうじ茶ラテ</span><span class="dots"></span><span class="price">¥550</span></div>
+        <div class="item"><span class="name">自家製レモネード</span><span class="dots"></span><span class="price">¥500</span></div>
+      </div>
+      <div>
+        <h3>おやつ・軽食</h3>
+        <div class="item"><span class="name">季節のフルーツタルト</span><span class="dots"></span><span class="price">¥550</span></div>
+        <div class="item"><span class="name">昔ながらの固めプリン</span><span class="dots"></span><span class="price">¥450</span></div>
+        <div class="item"><span class="name">あつあつたまごサンド</span><span class="dots"></span><span class="price">¥700</span></div>
+        <div class="item"><span class="name">ことりのナポリタン</span><span class="dots"></span><span class="price">¥850</span></div>
+        <h3 style="margin-top:22px">おすすめセット</h3>
+        <div class="item"><span class="name">ケーキセット</span><span class="dots"></span><span class="price">ドリンク代＋¥400</span></div>
+        <p class="item-note">お好きなケーキとドリンクを組み合わせられます</p>
+      </div>
+    </div>
+    <p class="menu-note">※価格はすべて税込です。※メニュー・価格はサンプルです。</p>
+  </div>
+</section>
+
+<!-- 店内の様子 -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="title"><span class="en">GALLERY</span><h2 class="mincho">店内の様子</h2></div>
+    <div class="gallery">
+      <div class="photo" style="background:linear-gradient(135deg,#a47551,#6f4e37)">☕<span>カウンター席</span></div>
+      <div class="photo" style="background:linear-gradient(135deg,#9bb59a,#5f7d5c)">🪴<span>窓ぎわのテーブル</span></div>
+      <div class="photo" style="background:linear-gradient(135deg,#e2b38c,#b9805a)">🍰<span>今日のケーキ</span></div>
+      <div class="photo" style="background:linear-gradient(135deg,#c9a27e,#8b6248)">📚<span>本棚のある席</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 店舗情報 -->
+<section id="access" class="menu-bg">
+  <div class="wrap">
+    <div class="title"><span class="en">ACCESS</span><h2 class="mincho">店舗情報</h2></div>
+    <div class="info">
+      <table>
+        <tr><th>店名</th><td>まちかど珈琲 ことり</td></tr>
+        <tr><th>住所</th><td>〇〇県〇〇市〇〇町1-2-3</td></tr>
+        <tr><th>電話</th><td>000-0000-0000</td></tr>
+        <tr><th>営業時間</th><td>8:00〜18:00<br>（ラストオーダー 17:30）</td></tr>
+        <tr><th>定休日</th><td>毎週水曜日</td></tr>
+        <tr><th>席数</th><td>18席（全席禁煙）</td></tr>
+        <tr><th>駐車場</th><td>3台</td></tr>
+      </table>
+      <div class="map">🗺️<br>ここに地図が入ります<br><small>（本番ではGoogleマップを埋め込みます）</small></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shop mincho">まちかど珈琲 ことり</div>
+  <div>© 2026 まちかど珈琲 ことり（サンプル）｜制作：ぬくもWeb</div>
+</footer>
+
+</body>
+</html>

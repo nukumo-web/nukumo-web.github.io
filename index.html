@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ぬくもWeb｜小さなお店のホームページ</title>
+<meta name="description" content="小さなお店のホームページを、やさしく・わかりやすく作ります。制作から更新・管理までおまかせください。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== 色やフォントの設定（ここを変えると全体の雰囲気が変わります） ===== */
+  :root {
+    /* やさしくてアットホームな配色：クリーム × テラコッタ × セージグリーン */
+    --main: #c8664a;      /* メインの色（あたたかいオレンジ） */
+    --main-dark: #a9533b;
+    --main-soft: #fbe8df; /* メインのうすい色 */
+    --accent: #8fb39b;    /* アクセントの色（やさしい緑） */
+    --bg: #fdf8f1;        /* 背景（クリーム色） */
+    --alt: #f7eee2;       /* 交互の背景 */
+    --card: #fffdf9;
+    --text: #4a3f35;      /* 文字（こげ茶） */
+    --sub: #85766a;
+    --line: #eedfcd;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+  /* ===== ヘッダー ===== */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(253, 248, 241, .92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 700; font-size: 1.2rem; text-decoration: none; }
+  .logo span { color: var(--main); }
+  nav a { margin-left: 22px; text-decoration: none; color: var(--sub); font-size: .95rem; }
+  nav a:hover { color: var(--main); }
+
+  /* ===== トップ（ヒーロー） ===== */
+  .hero { padding: 100px 0 90px; text-align: center; }
+  .hero .tag {
+    display: inline-block; background: var(--main-soft); color: var(--main-dark);
+    padding: 4px 16px; border-radius: 999px; font-size: .9rem; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.4; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--main); }
+  .hero p { color: var(--sub); max-width: 560px; margin: 0 auto 36px; }
+  .btn {
+    display: inline-block; background: var(--main); color: #fff;
+    padding: 14px 36px; border-radius: 999px; text-decoration: none; font-weight: 700;
+    transition: background .2s, transform .2s;
+  }
+  .btn:hover { background: var(--main-dark); transform: translateY(-2px); }
+
+  /* ===== 各セクション共通 ===== */
+  section { padding: 80px 0; }
+  section.alt { background: var(--alt); }
+  h2 { font-size: 1.7rem; text-align: center; margin-bottom: 12px; }
+  .lead { text-align: center; color: var(--sub); margin-bottom: 48px; }
+
+  .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 30px; box-shadow: 0 4px 14px rgba(120, 90, 60, .06);
+  }
+  .card .icon { font-size: 2rem; margin-bottom: 10px; }
+  .card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+  .card p { color: var(--sub); font-size: .95rem; }
+
+  /* ===== 自己紹介 ===== */
+  .about { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; justify-content: center; }
+  .avatar {
+    width: 160px; height: 160px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, #f2b48f, var(--accent));
+    display: grid; place-items: center; color: #fff; font-size: 3.5rem;
+  }
+  .about-text { max-width: 560px; }
+  .about-text h3 { font-size: 1.3rem; margin-bottom: 10px; }
+  .about-text ul { margin-top: 14px; padding-left: 1.2em; color: var(--sub); }
+
+  /* ===== 作品 ===== */
+  .work .thumb {
+    height: 160px; border-radius: 12px; margin-bottom: 16px;
+    display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 1.1rem;
+  }
+  .work-link { text-decoration: none; transition: transform .2s, box-shadow .2s; }
+  .work-link:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(120, 90, 60, .12); }
+  .work .more { color: var(--main); font-weight: 700; margin-top: 10px; }
+  .work .label {
+    display: inline-block; font-size: .8rem; color: var(--sub);
+    border: 1px solid var(--line); border-radius: 999px; padding: 0 10px; margin-bottom: 6px;
+  }
+
+  /* ===== 制作の流れ ===== */
+  .steps { counter-reset: step; display: grid; gap: 16px; max-width: 640px; margin: 0 auto; }
+  .step {
+    display: flex; gap: 18px; align-items: flex-start;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 24px;
+  }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent); color: #fff; display: grid; place-items: center; font-weight: 700;
+  }
+  .step h3 { font-size: 1.05rem; }
+  .step p { color: var(--sub); font-size: .93rem; }
+
+  /* ===== お問い合わせ ===== */
+  .contact { text-align: center; }
+  .contact p { color: var(--sub); margin-bottom: 30px; }
+
+  footer { text-align: center; padding: 30px 0; color: var(--sub); font-size: .85rem; border-top: 1px solid var(--line); }
+
+  /* ===== スマホ表示 ===== */
+  @media (max-width: 640px) {
+    nav { display: none; }
+    .hero { padding: 70px 0 60px; }
+    section { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">ぬくも<span>Web</span></a>
+    <nav>
+      <a href="#service">できること</a>
+      <a href="#about">自己紹介</a>
+      <a href="#works">作品</a>
+      <a href="#flow">流れ</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- トップ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="tag">小さなお店のホームページづくり</div>
+    <h1>パソコンが苦手でも大丈夫。<br><em>やさしく、わかりやすく</em><br>お店のホームページをつくります。</h1>
+    <p>「ホームページがほしいけど、何から始めればいいかわからない」<br>そんなお店の方に寄り添って、作るところから更新まで、まるごとお手伝いします。</p>
+    <a class="btn" href="#contact">気軽に相談する</a>
+  </div>
+</div>
+
+<!-- できること -->
+<section id="service">
+  <div class="wrap">
+    <h2>できること</h2>
+    <p class="lead">むずかしい言葉は使いません。わからないことは何度でも聞いてください。</p>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🏠</div>
+        <h3>ホームページ制作</h3>
+        <p>お店の雰囲気に合った、スマホでも見やすいホームページを作ります。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔧</div>
+        <h3>更新・管理</h3>
+        <p>メニューや営業時間の変更など、公開後の更新もおまかせください。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤖</div>
+        <h3>AI活用のご相談</h3>
+        <p>AIを使って、お店の作業を少しラクにする方法を一緒に考えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 自己紹介 -->
+<section id="about" class="alt">
+  <div class="wrap">
+    <h2>自己紹介</h2>
+    <p class="lead">はじめまして！</p>
+    <div class="about">
+      <div class="avatar">😊</div>
+      <div class="about-text">
+        <h3>ぬくもWeb</h3>
+        <p>
+          現在、高校3年生です。2027年春からIT系の専門学校で、情報システムを学びます。
+          AIを使ってWebゲームを作ったり、YouTubeに動画を投稿したりしてきました。
+          周りからは「優しい」と言われることが多く、その強みを活かして、
+          ITが苦手な方にも安心して任せてもらえる存在を目指しています。
+        </p>
+        <ul>
+          <li>得意：AIを使ったWeb制作、わかりやすい説明</li>
+          <li>好きなこと：バレーボール</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 作品 -->
+<section id="works">
+  <div class="wrap">
+    <h2>作品</h2>
+    <p class="lead">練習として作ったサンプルサイトです（※架空のお店です）。</p>
+    <div class="grid">
+      <a class="card work work-link" href="works/cafe/index.html">
+        <div class="thumb" style="background:linear-gradient(135deg,#8b6248,#5a3e2c)">☕ まちかど珈琲 ことり</div>
+        <span class="label">サンプル・公開中</span>
+        <h3>まちかどの喫茶店</h3>
+        <p>あたたかい雰囲気のカフェのホームページ。メニューと店舗情報を見やすく。</p>
+        <p class="more">サイトを見る →</p>
+      </a>
+      <a class="card work work-link" href="works/salon/index.html">
+        <div class="thumb" style="background:linear-gradient(135deg,#e2b4ae,#b8aca0)">✂️ hair room ねいろ</div>
+        <span class="label">サンプル・公開中</span>
+        <h3>小さな美容院</h3>
+        <p>予約のしやすさを重視した、やわらかい雰囲気の美容院のホームページ。</p>
+        <p class="more">サイトを見る →</p>
+      </a>
+      <a class="card work work-link" href="works/juku/index.html">
+        <div class="thumb" style="background:linear-gradient(135deg,#234a7a,#3b6aa3)">☀️ ひなた個別学習塾</div>
+        <span class="label">サンプル・公開中</span>
+        <h3>地域の学習塾</h3>
+        <p>保護者が安心できる、信頼感のある学習塾のホームページ。無料体験の申し込みフォーム付き。</p>
+        <p class="more">サイトを見る →</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 制作の流れ -->
+<section id="flow" class="alt">
+  <div class="wrap">
+    <h2>制作の流れ</h2>
+    <p class="lead">はじめての方でも安心して進められます。</p>
+    <div class="steps">
+      <div class="step"><div><h3>お話を聞く</h3><p>お店のこと、作りたいイメージを教えてください。</p></div></div>
+      <div class="step"><div><h3>見本を作る</h3><p>まずは見本を作って、イメージを確認していただきます。</p></div></div>
+      <div class="step"><div><h3>一緒に仕上げる</h3><p>気になるところは何度でも直します。</p></div></div>
+      <div class="step"><div><h3>公開・その後のサポート</h3><p>公開したあとも、更新や困りごとに対応します。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section id="contact">
+  <div class="wrap contact">
+    <h2>お問い合わせ</h2>
+    <p>ご相談は無料です。どんな小さなことでもお気軽にどうぞ。</p>
+    <!-- 連絡先：活動用Gmail（2026-11-20 作成済み） -->
+    <a class="btn" href="mailto:nukumo.web@gmail.com">nukumo.web@gmail.com</a>
+  </div>
+</section>
+
+<footer>© 2026 ぬくもWeb</footer>
+
+</body>
+</html>
