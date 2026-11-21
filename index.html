@@ -93,6 +93,19 @@
     display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 1.1rem;
   }
   .work-link { text-decoration: none; transition: transform .2s, box-shadow .2s; }
+  .works-sub { font-size: 1.15rem; margin: 36px 0 16px; color: var(--text); }
+  .works-sub:first-of-type { margin-top: 0; }
+  .works-sub small { font-size: .8rem; color: var(--sub); font-weight: 400; margin-left: 8px; }
+  .game-card { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; padding: 0; overflow: hidden; }
+  .game-thumb { min-height: 260px; background-size: cover; background-position: center; background-color: #1a1530; }
+  .game-body { padding: 28px 30px; }
+  .game-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .game-tags li { font-size: .78rem; color: var(--main-dark); background: var(--main-soft); border-radius: 999px; padding: 2px 12px; }
+  @media (max-width: 720px) {
+    .game-card { grid-template-columns: 1fr; }
+    .game-thumb { min-height: 170px; }
+    .game-body { padding: 22px; }
+  }
   .work-link:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(120, 90, 60, .12); }
   .work .more { color: var(--main); font-weight: 700; margin-top: 10px; }
   .work .label {
@@ -174,6 +187,11 @@
         <h3>AI活用のご相談</h3>
         <p>AIを使って、お店の作業を少しラクにする方法を一緒に考えます。</p>
       </div>
+      <div class="card">
+        <div class="icon">🎮</div>
+        <h3>ミニゲーム制作</h3>
+        <p>お店のキャンペーンや学習用に、ブラウザで遊べるオリジナルのミニゲームを作ります。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -194,7 +212,7 @@
           ITが苦手な方にも安心して任せてもらえる存在を目指しています。
         </p>
         <ul>
-          <li>得意：AIを使ったWeb制作</li>
+          <li>得意：AIを使ったWeb制作、ブラウザゲーム制作</li>
           <li>好きなこと：バレーボール</li>
         </ul>
       </div>
@@ -206,7 +224,8 @@
 <section id="works">
   <div class="wrap">
     <h2>作品</h2>
-    <p class="lead">練習として作ったサンプルサイトです（※架空のお店です）。</p>
+    <p class="lead">ホームページのサンプルと、ブラウザで遊べるゲーム作品です。</p>
+    <h3 class="works-sub">🏠 ホームページ <small>練習用のサンプル（※架空のお店です）</small></h3>
     <div class="grid">
       <a class="card work work-link" href="works/cafe/index.html">
         <div class="thumb" style="background:linear-gradient(135deg,#8b6248,#5a3e2c)">☕ まちかど珈琲 ことり</div>
@@ -230,6 +249,20 @@
         <p class="more">サイトを見る →</p>
       </a>
     </div>
+
+    <h3 class="works-sub">🎮 ゲーム <small>ブラウザでそのまま遊べます</small></h3>
+    <a class="card work work-link game-card" href="https://tubular-choux-bf9d40.netlify.app/" target="_blank" rel="noopener">
+      <div class="game-thumb" style="background-image:url('img/minigame.jpg')"></div>
+      <div class="game-body">
+        <span class="label">全31作品・公開中</span>
+        <h3>ミニゲームひろば</h3>
+        <p>パズル、アクション、シューティング、お店経営、3Dのスポーツゲームなど、ブラウザで遊べるオリジナルゲームを31作品つくりました。スマホでもパソコンでも遊べます。</p>
+        <ul class="game-tags">
+          <li>パズル</li><li>アクション</li><li>お店経営</li><li>3D</li><li>2人対戦</li><li>学習</li>
+        </ul>
+        <p class="more">ゲームで遊ぶ →</p>
+      </div>
+    </a>
   </div>
 </section>
 
